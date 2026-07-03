@@ -30,9 +30,17 @@ body {
     color: #e6edf3;
 }
 
-#header img {
+#header a {
+    display: inline-block;
     height: 100%;
+    width: 5%;
+}
+
+#header a img {
+    display: block;
     mix-blend-mode: screen;
+    height: 100%;
+    width: 100%;
 }
 
 #navigation {
