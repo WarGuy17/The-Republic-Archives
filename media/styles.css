@@ -103,7 +103,7 @@ main {
     margin: 0 auto;
 }
 
-#card-area {
+.cardArea {
     display: grid;
     height: 90vh;
     width: 50%;
@@ -127,6 +127,10 @@ main {
     display: flex;
     color: rgba(59, 130, 246, 0.5);
     margin-top: 15%;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
 }
 
 .pageNav li {

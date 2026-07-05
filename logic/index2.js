@@ -1,31 +1,31 @@
-const cardArea = document.querySelector('#card-area');
+const cardArea2 = document.querySelector('#card-area2');
 
-async function getPeople(){
+async function getPeople2(){
     try {
-        const response = await fetch('https://swapi.dev/api/people/');
-
+        const response = await fetch('https://swapi.dev/api/people/?page=2');
+        
         if(!response.ok){
-            throw new Error('The HTTP request was not ok.')
+            throw new Error("There was an HTTP error")
         }
 
         const data = await response.json();
-        const people = data.results
-        createPeopleCards(people);
-        console.log(people)
+        const people = data.results;
+
+        createPeopleCards2(people);
     }
     catch(e){
         console.error(e);
     }
 }
 
-async function createPeopleCards(data){
+async function createPeopleCards2(data) {
     data.forEach((person) => {
 
         const peopleCard = document.createElement('div');
         const peopleName = document.createElement('h3');
         const peopleBirth = document.createElement('h3');
 
-        cardArea.appendChild(peopleCard);
+        cardArea2.appendChild(peopleCard);
         peopleCard.appendChild(peopleName);
         peopleCard.appendChild(peopleBirth);
 
@@ -36,5 +36,4 @@ async function createPeopleCards(data){
     })
 }
 
-getPeople();
-
+getPeople2();
