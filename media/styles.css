@@ -4,7 +4,7 @@
     box-sizing: border-box;
 }
 
-body {
+#mainPage {
     display: grid;
     grid-template-columns: 3fr 3fr 1fr;
     grid-template-areas: 
@@ -12,7 +12,7 @@ body {
     "nav nav nav" 
 }
 
-#header {
+.header {
     display: flex;
     grid-area: header;
     width: 100%;
@@ -23,20 +23,20 @@ body {
     background-color:#0a0b10;
 }
 
-#header h1 {
+.header h1 {
     font-family: 'Courier New', Courier, monospace;
     text-transform: uppercase;
     letter-spacing: 2px;
     color: #e6edf3;
 }
 
-#header a {
+.header a {
     display: inline-block;
     height: 100%;
     width: 5%;
 }
 
-#header a img {
+.header a img {
     display: block;
     mix-blend-mode: screen;
     height: 100%;
@@ -45,13 +45,15 @@ body {
 
 main {
     display: flex;
-    justify-content: center;
-    padding: 10%;
+    justify-content: space-between;
+    padding: 5%;
     grid-area: nav;
     height: 100vh;
     border-bottom: 1px solid black;
     background-color: #0a0b10;
     align-items: center;
+    flex-direction: column;
+    height: 100vh;
 }
 
 #navigation ul{
@@ -99,4 +101,35 @@ main {
     font-family: 'Courier New', Courier, monospace;
     font-weight: 700;
     margin: 0 auto;
+}
+
+#card-area {
+    display: grid;
+    height: 90vh;
+    width: 50%;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    padding: 1rem;
+}
+
+.people-card {
+    background-color: blue;
+    font-family: 'Courier New', Courier, monospace;
+    text-align: center;
+    background-color: #0a0b10;
+    border: 1px solid rgba(59, 130, 246, 0.5);
+    color: rgba(59, 130, 246, 0.5);
+    padding: 0.5rem;
+    border-radius: 10px;
+}
+
+.pageNav {
+    display: flex;
+    color: rgba(59, 130, 246, 0.5);
+    margin-top: 15%;
+}
+
+.pageNav li {
+    list-style: none;
+    margin: 0.8rem;
 }
