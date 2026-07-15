@@ -17,9 +17,6 @@ previousPage.addEventListener('click', () => {
     if(page > 1){
         page--;
     }
-    else {
-        previousPage.disabled = true;
-    }
     getPeople(page, nextPage);
 })
 

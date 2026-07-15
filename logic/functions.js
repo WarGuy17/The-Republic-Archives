@@ -5,19 +5,13 @@ export function createPeopleCards(data, parent){
     data.forEach((person) => {
         const peopleCard = document.createElement('div');//creating card
         const peopleName = document.createElement('h3');//creating a place to put name inside card.
-        const peopleBirth = document.createElement('h3');//creating a place to put birth inside card.
 
         parent.appendChild(peopleCard);
         peopleCard.appendChild(peopleName);
-        peopleCard.appendChild(peopleBirth);
 
         peopleCard.classList.add('people-card');
-        
-        peopleName.textContent = '';
 
-
-        peopleName.textContent = `Name: ${person.name}`;
-        peopleBirth.textContent = `Birth: ${person.birth_year}`;
+        peopleName.textContent = `${person.name}`;
     })
 }
 
@@ -30,11 +24,13 @@ export async function getPeople(input, button){//new idea use the next property 
         }
 
         const data = await response.json();
-        console.log(data);
         if(data.next === null){
             console.log(button)
             button.disabled = true;
             console.log(button.disabled);
+        }
+        else {
+            button.disabled = false;
         }
         const people = data.results;
         createPeopleCards(people, cardArea);
