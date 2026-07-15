@@ -1,4 +1,4 @@
-const cardArea = document.querySelector('.cardArea');
+export const cardArea = document.querySelector('.cardArea');
 
 
 
