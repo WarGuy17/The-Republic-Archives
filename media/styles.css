@@ -161,3 +161,18 @@ main {/*Main style below header*/
     background-color: rgba(59, 130, 246, 0.5);
     color: #0a0b10;
 }
+
+.loadingBox {
+    width: 15%;
+    height: 15%;
+    display: flex;
+    position: absolute;
+    z-index: 1000;
+    background-color: white;
+    top: 50%;
+    left: 50%;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    color: black;
+}

@@ -1,22 +1,25 @@
-import {createPeopleCards, getPeople} from './functions.js';
+import {createPeopleCards, getPeople, loadingState} from './functions.js';
+import {cardArea, nextPage, previousPage} from './variables.js';
 
-const nextPage = document.querySelector('#nextPage');
-const previousPage = document.querySelector('#previousPage');
+
 
 let page = 1;
 
-getPeople(page, nextPage);
+getPeople(page, nextPage, cardArea);
+
+
+
 
 
 nextPage.addEventListener('click', () => {
     page++;
-    getPeople(page, nextPage);
+    getPeople(page, nextPage, cardArea);
 });
 
 previousPage.addEventListener('click', () => {
     if(page > 1){
         page--;
     }
-    getPeople(page, nextPage);
+    getPeople(page, nextPage, cardArea);
 })
 
