@@ -11,6 +11,7 @@ getPeople(page, nextPage, cardArea);
 
 
 
+
 nextPage.addEventListener('click', () => {
     page++;
     getPeople(page, nextPage, cardArea);

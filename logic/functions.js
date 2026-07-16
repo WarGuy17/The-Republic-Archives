@@ -2,7 +2,6 @@ import {cardArea} from './variables.js'
 
 export function createPeopleCards(data, parent){
     parent.innerHTML = '';
-    loadingState(parent);
     setTimeout(()=> {
         data.forEach((person) => {
             const peopleCard = document.createElement('div');//creating card
@@ -15,11 +14,14 @@ export function createPeopleCards(data, parent){
 
             peopleName.textContent = `${person.name}`;
         })
-    }, 2000);
+        loadingState(parent);
+    }, 1000);
 }
 
 export async function getPeople(input, button, parent){//probably going to pass in arguements that can be pushed into the fetch for every single call it has to do instead of rewriting it over and over again.
     try {
+        parent.innerHTML = '';
+        loadingState(parent);
         const response = await fetch(`https://swapi.dev/api/people/?page=${input}`);
 
         if(!response.ok){
@@ -36,6 +38,7 @@ export async function getPeople(input, button, parent){//probably going to pass 
             button.disabled = false;
         }
         const people = data.results;
+
         createPeopleCards(people, parent);
     }
     catch(e){
@@ -44,24 +47,22 @@ export async function getPeople(input, button, parent){//probably going to pass 
 }
 
 export function loadingState(parent){
-    let loadingBox;
-    if(loadingBox === undefined){
-        let loadingBox = document.createElement('div');
+    if(parent.innerHTML === ''){
+        const loadingBox = document.createElement('div');
         const loadingMessage = document.createElement('h2');
 
         document.body.appendChild(loadingBox);
         loadingBox.appendChild(loadingMessage);
-        loadingMessage.textContent = 'LOADING....';
-    }
+        loadingMessage.textContent = 'Loading....';
 
-
-    if(parent.innerHTML === ''){
-        console.log('it triggered');
         loadingBox.classList.add('loadingBox');
-
     }
-    else if(parent.innerHTML !== '') {
-        console.log('it didnt trigger');
-        loadingBox.classList.remove('loadingBox');
+    else {
+        const oldLoadingBox = document.getElementsByClassName('loadingBox');
+        console.log(oldLoadingBox);
+        if(oldLoadingBox){
+            console.log('it worked');
+            oldLoadingBox[0].remove();
+        }
     }
 }

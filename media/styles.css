@@ -163,16 +163,17 @@ main {/*Main style below header*/
 }
 
 .loadingBox {
-    width: 15%;
-    height: 15%;
-    display: flex;
-    position: absolute;
+    position: fixed;
+    inset: 0;
     z-index: 1000;
-    background-color: white;
-    top: 50%;
-    left: 50%;
+
+    background-color: rgba(0,0,0, 0.8);
+
+    display: flex;
     justify-content: center;
     align-items: center;
+
+    color: white;
     font-size: 2rem;
-    color: black;
+    font-family: 'Courier New', Courier, monospace;
 }
