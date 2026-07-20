@@ -1,35 +1,35 @@
 import {cardArea} from './variables.js'
 
-export function createPeopleCards(data, parent){
-    parent.innerHTML = '';
-    setTimeout(()=> {
-        data.forEach((person) => {
-            const peopleCard = document.createElement('div');//creating card
-            const peopleName = document.createElement('h3');//creating a place to put name inside card.
+export function createCards(data, parent){
+    parent.innerHTML = '';//clears the card area to make sure new cards can be put inside.
+    setTimeout(()=> {//sets a timeout to do the below code.
+        data.forEach((x) => {
+            const card = document.createElement('div');//creating card
+            const name = document.createElement('h3');//creating a place to put name inside card.
 
-            parent.appendChild(peopleCard);
-            peopleCard.appendChild(peopleName);
+            parent.appendChild(card);//attaching card to cardArea
+            card.appendChild(name);//putting name inside card
 
-            peopleCard.classList.add('people-card');
+            card.classList.add('card');//adding a premade class to the card
 
-            peopleName.textContent = `${person.name}`;
+            name.textContent = `${x.name}`;//attaches name to the person.name fetched.
         })
         loadingState(parent);
     }, 1000);
 }
 
-export async function getPeople(input, button, parent){//probably going to pass in arguements that can be pushed into the fetch for every single call it has to do instead of rewriting it over and over again.
+export async function getPeople(input, button, parent, category){//probably going to pass in arguements that can be pushed into the fetch for every single call it has to do instead of rewriting it over and over again.
     try {
         parent.innerHTML = '';
         loadingState(parent);
-        const response = await fetch(`https://swapi.dev/api/people/?page=${input}`);
+        const response = await fetch(`https://swapi.dev/api/${category}/?page=${input}`);//fetches information
 
-        if(!response.ok){
+        if(!response.ok){//checks if the response was ok.
             throw new Error('The HTTP request was not ok.');
         }
 
-        const data = await response.json();
-        if(data.next === null){
+        const data = await response.json();//attaches response to the javascript object notation and to data.
+        if(data.next === null){//if there is no next page disables that button.
             console.log(button)
             button.disabled = true;
             console.log(button.disabled);
@@ -37,9 +37,9 @@ export async function getPeople(input, button, parent){//probably going to pass 
         else {
             button.disabled = false;
         }
-        const people = data.results;
+        const info = data.results;//attaches results to people 
 
-        createPeopleCards(people, parent);
+        createCards(info, parent);//that data is thrown into a card renderer/function above.
     }
     catch(e){
         console.error(e);
@@ -47,22 +47,22 @@ export async function getPeople(input, button, parent){//probably going to pass 
 }
 
 export function loadingState(parent){
-    if(parent.innerHTML === ''){
-        const loadingBox = document.createElement('div');
-        const loadingMessage = document.createElement('h2');
+    if(parent.innerHTML === ''){//checks if cardArea is empty
+        const loadingBox = document.createElement('div');//makes a box
+        const loadingMessage = document.createElement('h2');//makes the message
 
-        document.body.appendChild(loadingBox);
-        loadingBox.appendChild(loadingMessage);
-        loadingMessage.textContent = 'Loading....';
+        document.body.appendChild(loadingBox);//attaches box to body of html
+        loadingBox.appendChild(loadingMessage);//attaches message to the box.
+        loadingMessage.textContent = 'Loading....';//loading message
 
-        loadingBox.classList.add('loadingBox');
+        loadingBox.classList.add('loadingBox');//loading style.
     }
     else {
-        const oldLoadingBox = document.getElementsByClassName('loadingBox');
+        const oldLoadingBox = document.getElementsByClassName('loadingBox');//checks elements named by class. cant find the variables because of scope.
         console.log(oldLoadingBox);
         if(oldLoadingBox){
             console.log('it worked');
-            oldLoadingBox[0].remove();
+            oldLoadingBox[0].remove();//since it is an array returned the first response is then removed which is the only element.
         }
     }
 }
